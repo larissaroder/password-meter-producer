@@ -1,9 +1,7 @@
 package br.com.gumga.implementation.addition;
 
-import org.apache.commons.lang3.StringUtils;
-
-import br.com.gumga.enums.RegexAdditionEnum;
 import br.com.gumga.implementation.interfaces.AdditionInterface;
+import br.com.gumga.utils.CalculateStrongPassword;
 
 /**
  * Classe responsável por implementar a regra de bônus de números
@@ -15,21 +13,12 @@ public class Number implements AdditionInterface {
 
 	@Override
 	public int getValueBonusPositive(String password) {
-		return getNumber(password) * 4;
+		Integer valueCount = getValueLengthPositive(password);
+		return CalculateStrongPassword.getValueBonus(valueCount, 4);
 	}
 
 	@Override
 	public int getValueLengthPositive(String password) {
-		return getNumber(password);
+		return CalculateStrongPassword.getNumber(password);
 	}
-
-	private int getNumber(String password) {
-		int number = 0;
-		if (StringUtils.isBlank(password)) {
-			return number;
-		}
-		number = password.replaceAll(RegexAdditionEnum.NUMBER_LENGTH.getRegex(), "").length();
-		return number;
-	}
-
 }

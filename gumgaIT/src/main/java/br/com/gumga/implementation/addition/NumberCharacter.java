@@ -3,6 +3,7 @@ package br.com.gumga.implementation.addition;
 import org.apache.commons.lang3.StringUtils;
 
 import br.com.gumga.implementation.interfaces.AdditionInterface;
+import br.com.gumga.utils.CalculateStrongPassword;
 
 /**
  * Classe que representa a contagem de bônus da quantidade de caracteres
@@ -14,8 +15,8 @@ public class NumberCharacter implements AdditionInterface {
 
 	@Override
 	public int getValueBonusPositive(String password) {
-		int length = getNumberCharacter(password);
-		return length * 4;
+		Integer valueCount = getValueLengthPositive(password);
+		return CalculateStrongPassword.getValueBonus(valueCount, 4);
 	}
 
 	@Override

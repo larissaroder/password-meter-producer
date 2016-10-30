@@ -5,6 +5,7 @@ import java.util.Arrays;
 import br.com.gumga.enums.RegexDeductionEnum;
 import br.com.gumga.implementation.checker.CheckSequenceDeductionAbstract;
 import br.com.gumga.implementation.interfaces.DeductionInterface;
+import br.com.gumga.utils.CalculateStrongPassword;
 import br.com.gumga.utils.Constants;
 
 public class LetterSequenceThreeMore extends CheckSequenceDeductionAbstract implements DeductionInterface {
@@ -15,7 +16,8 @@ public class LetterSequenceThreeMore extends CheckSequenceDeductionAbstract impl
 				.split("-");
 		int result = Arrays.stream(arrayLetter).filter(letters -> letters.length() >= 4)
 				.mapToInt(letter -> finalResultBonus(letter, Constants.SEQUENCIAL_LETTERS)).sum();
-		return result * -3;
+		result = (result > 0) ? result : 0;
+		return CalculateStrongPassword.getValueBonus(result, -3);
 	}
 
 	@Override

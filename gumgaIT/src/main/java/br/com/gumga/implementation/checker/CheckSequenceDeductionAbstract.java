@@ -3,6 +3,8 @@ package br.com.gumga.implementation.checker;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.gumga.utils.CalculateStrongPassword;
+
 /**
  * Classe responsável por implementar a regra das letras, numeros e simbolos
  * sequenciais
@@ -19,7 +21,8 @@ public abstract class CheckSequenceDeductionAbstract {
 
 		List<Integer> sequenceListReverse = resultOfComparation(alphabetReverse, sequence);
 		int countListReverse = sequenceListReverse.stream().filter(i -> i > 3).mapToInt(i -> i.intValue()).sum();
-		return ((countList + countListReverse) > 0) ? (countList + countListReverse) - 2 : 0;
+		int valueCount = countList + countListReverse;
+		return CalculateStrongPassword.getValueBonus(valueCount-2, 1);
 	}
 
 	private static List<Integer> resultOfComparation(String text, String sequence) {
