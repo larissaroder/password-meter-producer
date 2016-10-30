@@ -18,6 +18,7 @@ import br.com.gumga.utils.Constants;
 public class Requirement implements AdditionInterface {
 
 	private static final Logger LOGGER = Logger.getLogger(Requirement.class);
+	
 	@Override
 	public int getValueBonusPositive(String password) {
 		int requirementsBonus = getRequirementsValue(password);
