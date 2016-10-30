@@ -9,6 +9,6 @@ public class ValidationEnumStrongTest {
 
 	@Test
 	public void getRange () {
-		Assert.assertSame("strong", VerificationStrongEnum.score(80));
+		Assert.assertSame("Forte", VerificationStrongEnum.score(80));
 	}
 }

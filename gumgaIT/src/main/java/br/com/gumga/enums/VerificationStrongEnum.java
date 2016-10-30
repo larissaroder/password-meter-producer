@@ -1,32 +1,33 @@
 package br.com.gumga.enums;
 
+import java.util.Arrays;
+
 public enum VerificationStrongEnum {
 
-	VERY_WEAK(0, "Muito Fraco"), WEAK(20, "Fraco"), GOOD(40, "Boa"), STRONG(60, "Forte"), VERY_STRONG(81, "Muito Forte");
+	VERY_WEAK(0, 20, "Muito Fraco"), WEAK(21, 40, "Fraco"), GOOD(41, 60, "Boa"), STRONG(61, 80, "Forte"), VERY_STRONG(81, 100,"Muito Forte");
 
-	private final Integer range;
+	private final Integer initialRange;
+	private final Integer endRange;
 	private final String message;
 
-	VerificationStrongEnum(Integer range, String message) {
-		this.range = range;
+	VerificationStrongEnum(Integer initialRange, Integer endRange, String message) {
+		this.initialRange = initialRange;
+		this.endRange = endRange;
 		this.message = message;
 	}
 
 	public static String score(Integer score) {
-		if (score > VERY_WEAK.getRange() && score <= WEAK.getRange()) {
-			return VERY_WEAK.getMessage();
-		} else if (score > WEAK.getRange() && score <= GOOD.getRange()) {
-			return WEAK.getMessage();
-		} else if (score > GOOD.getRange() && score <= STRONG.getRange()) {
-			return GOOD.getMessage();
-		} else if (score > STRONG.getRange() && score <= VERY_STRONG.getRange()) {
-			return STRONG.getMessage();
-		}
-		return VERY_STRONG.getMessage();
+		return Arrays.stream(values())
+				.filter(value -> score >= value.getInitialRange() && score <= value.getEndRange())
+				.findAny().map(value -> value.getMessage()).get();
 	}
 
-	public Integer getRange() {
-		return range;
+	public Integer getInitialRange() {
+		return initialRange;
+	}
+
+	public Integer getEndRange() {
+		return endRange;
 	}
 
 	public String getMessage() {
