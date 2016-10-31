@@ -50,7 +50,7 @@ public class ScoreValidation {
 		Integer totalScore = rules.stream().mapToInt(r -> r.getBonus()).sum();
 		score.setRules(rules);
 		score.setScore(totalScore);
-		score.setMessage(VerificationStrongEnum.score(totalScore));
+		score.setMessage(VerificationStrongEnum.score(score.getScore()));
 		return score;
 
 	}

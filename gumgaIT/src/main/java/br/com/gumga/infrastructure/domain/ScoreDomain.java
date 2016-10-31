@@ -17,6 +17,8 @@ public class ScoreDomain implements Serializable{
 	public void setScore(Integer score) {
 		if (score > 100) {
 			score =100;
+		} else if (score <0 ) {
+			score = 0;
 		}
 		this.score = score;
 	}

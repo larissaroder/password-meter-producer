@@ -82,7 +82,7 @@ public class CheckCalculateStrongPassword {
 			return letters;
 		}
 		letters = password.replaceAll(RegexDeductionEnum.CONSECUTIVE_LETTER_LOWER.getRegex(), "").length();
-		return letters > 0 ? (password.length() - letters) : 0;
+		return password.length() - letters;
 	}
 
 	protected static Integer getConsecutiveLettersUpperCase(String password) {
@@ -91,7 +91,7 @@ public class CheckCalculateStrongPassword {
 			return letters; 
 		}
 		letters = password.replaceAll(RegexDeductionEnum.CONSECUTIVE_LETTER_UPPER.getRegex(), "").length();
-		return letters > 0 ? (password.length() - letters): 0;
+		return password.length() - letters;
 	}
 
 	protected static Integer getValueLettersOnly(String password) {
@@ -112,7 +112,7 @@ public class CheckCalculateStrongPassword {
 			return number;
 		}
 		number = password.replaceAll(RegexDeductionEnum.CONSECUTIVE_NUMBER.getRegex(), "").length();
-		return number > 0 ? (password.length() - number) : 0;
+		return password.length() - number;
 	}
 
 	protected static Integer getValueNumbersOnly(String password) {

@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ public class PasswordValidationService {
 	@Autowired
 	private Environment env;
 	
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/validation",method={RequestMethod.POST})
 	public ResponseEntity<Object> getResponseValidationPassword(@RequestParam String password) {
 		LOGGER.info(">>>> Início - Método getResponseValidationPassword >>>>");
