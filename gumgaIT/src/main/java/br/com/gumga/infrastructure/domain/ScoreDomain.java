@@ -15,6 +15,9 @@ public class ScoreDomain implements Serializable{
 		return score;
 	}
 	public void setScore(Integer score) {
+		if (score > 100) {
+			score =100;
+		}
 		this.score = score;
 	}
 	public List<RulesDomain> getRules() {

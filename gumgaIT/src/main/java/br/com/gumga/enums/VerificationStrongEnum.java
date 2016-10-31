@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum VerificationStrongEnum {
 
-	VERY_WEAK(0, 20, "Muito Fraco"), WEAK(21, 40, "Fraco"), GOOD(41, 60, "Boa"), STRONG(61, 80, "Forte"), VERY_STRONG(81, 100,"Muito Forte");
+	VERY_WEAK(0, 20, "Muito Fraco"), WEAK(21, 40, "Fraco"), GOOD(41, 60, "Boa"), STRONG(61, 80, "Forte"), VERY_STRONG(81, Integer.MAX_VALUE,"Muito Forte");
 
 	private final Integer initialRange;
 	private final Integer endRange;

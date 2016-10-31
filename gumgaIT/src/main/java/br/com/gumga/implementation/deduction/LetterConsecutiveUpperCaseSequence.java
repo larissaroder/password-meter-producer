@@ -1,7 +1,11 @@
 package br.com.gumga.implementation.deduction;
 
-import br.com.gumga.implementation.interfaces.DeductionInterface;
-import br.com.gumga.utils.CalculateStrongPassword;
+import java.util.HashMap;
+import java.util.Map;
+
+import br.com.gumga.implementation.checker.CheckCalculateStrongPassword;
+import br.com.gumga.implementation.interfaces.BonusInterface;
+import br.com.gumga.utils.Constants;
 
 /**
  * Classe que representa a regra de letras maiusculas repetidas sequencialmente
@@ -9,16 +13,14 @@ import br.com.gumga.utils.CalculateStrongPassword;
  * @author Larissa
  * @since 29 de out de 2016
  */
-public class LetterConsecutiveUpperCaseSequence implements DeductionInterface {
+public class LetterConsecutiveUpperCaseSequence extends CheckCalculateStrongPassword implements BonusInterface {
 
 	@Override
-	public int getValueBonusNegative(String password) {
-		Integer valueCount = getValueLengthNegative(password);
-		return CalculateStrongPassword.getValueBonus(valueCount, -2);
-	}
-
-	@Override
-	public int getValueLengthNegative(String password) {
-		return CalculateStrongPassword.getConsecutiveLettersUpperCase(password);
+	public Map<String , Integer> getValueBonus(String password) {
+		Map<String , Integer> values = new HashMap<>();
+		Integer valueCount = getConsecutiveLettersUpperCase(password);
+		values.put(Constants.LENGTH, valueCount);
+		values.put(Constants.BONUS, getValueBonus(valueCount, -2));
+		return values;
 	}
 }

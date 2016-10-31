@@ -1,21 +1,20 @@
 package br.com.gumga.implementation.addition;
 
-import br.com.gumga.implementation.interfaces.AdditionInterface;
-import br.com.gumga.utils.CalculateStrongPassword;
+import java.util.HashMap;
+import java.util.Map;
 
-public class MiddleNumberOrSymbol implements AdditionInterface {
+import br.com.gumga.implementation.checker.CheckCalculateStrongPassword;
+import br.com.gumga.implementation.interfaces.BonusInterface;
+import br.com.gumga.utils.Constants;
 
-	@Override
-	public int getValueBonusPositive(String password) {
-		Integer valueCount = getValueLengthPositive(password);
-		return CalculateStrongPassword.getValueBonus(valueCount, 2);
-	}
+public class MiddleNumberOrSymbol extends CheckCalculateStrongPassword implements BonusInterface {
 
 	@Override
-	public int getValueLengthPositive(String password) {
-		return CalculateStrongPassword.getMiddleValue(password);
+	public Map<String , Integer> getValueBonus(String password) {
+		Integer valueCount = getMiddleValue(password);
+		Map<String , Integer> values = new HashMap<>();
+		values.put(Constants.LENGTH, valueCount);
+		values.put(Constants.BONUS, getValueBonus(valueCount, 2));
+		return values;
 	}
-
-	
-
 }

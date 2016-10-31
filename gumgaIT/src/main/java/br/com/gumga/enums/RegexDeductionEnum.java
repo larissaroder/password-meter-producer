@@ -2,9 +2,9 @@ package br.com.gumga.enums;
 
 public enum RegexDeductionEnum {
 
-	REPEATED_LETTER_UPPER ("[^A-Z{2,}]"),
-	CONSECUTIVE_LETTER_LOWER ("[^a-z{2,}]"),
-	REPEATED_NUMBER ("[^0-9{2,}]"),
+	CONSECUTIVE_LETTER_UPPER ("[A-Z]{2,}"),
+	CONSECUTIVE_LETTER_LOWER ("[a-z]{2,}"),
+	CONSECUTIVE_NUMBER ("[0-9]{2,}"),
 	NUMBER_ONLY ("[0-9]"),
 	LETTERS_ONLY ("[a-zA-Z]"),
 	LETTERS_ONLY_SEQUENCE ("[^a-zA-Z]"),

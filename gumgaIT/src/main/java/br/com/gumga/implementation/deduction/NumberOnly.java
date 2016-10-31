@@ -1,7 +1,11 @@
 package br.com.gumga.implementation.deduction;
 
-import br.com.gumga.implementation.interfaces.DeductionInterface;
-import br.com.gumga.utils.CalculateStrongPassword;
+import java.util.HashMap;
+import java.util.Map;
+
+import br.com.gumga.implementation.checker.CheckCalculateStrongPassword;
+import br.com.gumga.implementation.interfaces.BonusInterface;
+import br.com.gumga.utils.Constants;
 
 /**
  * Classe que representa implementação de regras para quando a senha possui
@@ -10,16 +14,14 @@ import br.com.gumga.utils.CalculateStrongPassword;
  * @author Larissa
  * @since 29 de out de 2016
  */
-public class NumberOnly implements DeductionInterface {
-
+public class NumberOnly extends CheckCalculateStrongPassword implements BonusInterface {
+	
 	@Override
-	public int getValueBonusNegative(String password) {
-		Integer valueCount = getValueLengthNegative(password);
-		return CalculateStrongPassword.getValueBonus(valueCount, -1);
-	}
-
-	@Override
-	public int getValueLengthNegative(String password) {
-		return CalculateStrongPassword.getValueNumbersOnly(password) * -1;
+	public Map<String , Integer> getValueBonus(String password) {
+		Map<String , Integer> values = new HashMap<>();
+		Integer valueCount = getValueNumbersOnly(password);
+		values.put(Constants.LENGTH, valueCount);
+		values.put(Constants.BONUS, getValueBonus(valueCount, -1));
+		return values;
 	}
 }
